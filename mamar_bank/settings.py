@@ -153,9 +153,12 @@ STATIC_URL = '/static/'
 
 ## settings.py
 
+
+
+
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Check this path exists
-    # Or remove this line if unnecessary
+    BASE_DIR / "static",  
+    
 ]
 
 
