@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 import dj_database_url 
 import environ
@@ -108,11 +109,14 @@ WSGI_APPLICATION = 'mamar_bank.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://bank_management_ohp1_user:USIdYU59qWB5Dd4MF6MHSsZTV0gryJmF@dpg-d0u9f6re5dus738u3m10-a.oregon-postgres.render.com/bank_management_ohp1',
-        
-    )
-}
+    'default': {
+        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('DB_NAME', BASE_DIR / "db.sqlite3"),
+        'USER': os.environ.get('DB_USER', ''),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', ''),
+        'PORT': os.environ.get('DB_PORT', ''),
+}}
 
 
 
